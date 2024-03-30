@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Rak Buku APP</title>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <h1 class="judul-header">Aplikasi Rak Buku</h1>
+    </header>
+    <!-- Header Akhir -->
+
+    <!-- Main -->
+    <main>
+      <!-- Section Input -->
+      <section class="section-input section">
+        <h2>Masukkan Buku Baru</h2>
+        <form id="input-buku" class="input-buku">
+          <div class="input">
+            <label for="judul-buku">Judul</label>
+            <input
+              type="text"
+              id="judul-buku"
+              placeholder="Judul Buku"
+              required
+            />
+          </div>
+          <div class="input">
+            <label for="penulis-buku">Penulis</label>
+            <input
+              type="text"
+              id="penulis-buku"
+              placeholder="Nama Penulis"
+              required
+            />
+          </div>
+          <div class="input">
+            <label for="tahun-buku">Tahun</label>
+            <input
+              type="number"
+              id="tahun-buku"
+              placeholder="Tahun Terbit"
+              required
+            />
+          </div>
+          <div class="input-cek">
+            <label for="cek-buku-selesai">Selesai Dibaca</label>
+            <input type="checkbox" id="cek-buku-selesai" />
+          </div>
+          <button id="submit-buku" type="submit">
+            Masukkan Buku Ke Rak <span id="status-buku">Belum Selesai Dibaca</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Section Pencarian -->
+      <section class="section-cari-buku section">
+        <h2>Cari Buku</h2>
+        <form id="cari-buku" class="cari-buku">
+          <input type="text" id="cari-judul" placeholder="Judul Buku" />
+          <button id="submit-cari" type="submit">Cari</button>
+        </form>
+      </section>
+
+      <!-- Section Buku Belum Selesai Dibaca -->
+      <section class="section-buku">
+        <h2>Belum Selesai Dibaca</h2>
+        <div class="list-buku" id="list-buku-belum-selesai-dibaca">
+          <!-- <div class="info-buku">
+            <h3 class="judul-buku">Judul Buku</h3>
+            <p class="penulis-buku">Penulis: Penulis Buku</p>
+            <p class="tahun-buku">Tahun: Tahun Terbit</p>
+            <div class="aksi-buku">
+              <button class="selesai-dibaca">Selesai Dibaca</button>
+              <button class="hapus-buku">Hapus Buku</button>
+            </div>
+          </div> -->
+        </div>
+      </section>
+
+      <!-- Section Buku Sudah Dibaca -->
+      <section class="section-buku">
+        <h2>Selesai Dibaca</h2>
+        <div class="list-buku" id="list-buku-selesai-dibaca">
+          <!-- <div class="info-buku">
+            <h3 class="judul-buku">Judul Buku</h3>
+            <p class="penulis-buku">Penulis: Penulis Buku</p>
+            <p class="tahun-buku">Tahun: Tahun Terbit</p>
+            <div class="aksi-buku">
+              <button class="selesai-dibaca">Belum Selesai Dibaca</button>
+              <button class="hapus-buku">Hapus Buku</button>
+            </div>
+          </div> -->
+        </div>
+      </section>
+    </main>
+    <!-- Main Akhir -->
+
+    <!-- Script JS -->
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
