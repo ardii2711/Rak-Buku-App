@@ -122,7 +122,16 @@ document.addEventListener("DOMContentLoaded", function () {
       aksiBuku.appendChild(hapusBuku);
 
       hapusBuku.addEventListener("click", function () {
-        hapusBukuDariDaftar(objekBuku.id);
+        tampilkanDialog();
+        const tombolBatal = document.getElementById("btn-batal");
+        const tombolHapus = document.getElementById("btn-hapus");
+        tombolBatal.addEventListener("click", function () {
+          sembunyikanDialog();
+        });
+        tombolHapus.addEventListener("click", function () {
+          hapusBukuDariDaftar(objekBuku.id);
+          sembunyikanDialog();
+        });
       });
     } else {
       const selesaiBaca = document.createElement("button");
@@ -140,7 +149,16 @@ document.addEventListener("DOMContentLoaded", function () {
       aksiBuku.appendChild(hapusBuku);
 
       hapusBuku.addEventListener("click", function () {
-        hapusBukuDariDaftar(objekBuku.id);
+        tampilkanDialog();
+        const tombolBatal = document.getElementById("btn-batal");
+        const tombolHapus = document.getElementById("btn-hapus");
+        tombolBatal.addEventListener("click", function () {
+          sembunyikanDialog();
+        });
+        tombolHapus.addEventListener("click", function () {
+          hapusBukuDariDaftar(objekBuku.id);
+          sembunyikanDialog();
+        });
       });
     }
     return infoBuku;
@@ -206,5 +224,39 @@ document.addEventListener("DOMContentLoaded", function () {
         listBukuBelumSelesaiDibaca.appendChild(infoBuku);
       }
     }
-  } 
+  }
+
+  // Custom Dialog
+  const dialog = document.getElementById("dialog");
+  function tampilkanDialog() {
+    dialog.style.display = "flex";
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    document.body.appendChild(overlay);
+  }
+  function sembunyikanDialog() {
+    dialog.style.display = "none";
+    const overlay = document.querySelector(".overlay");
+    if (overlay) {
+      overlay.remove();
+    }
+  }
+
+  // Fungsi untuk menyimpan data buku ke dalam localStorage
+  function simpanData() {
+    const dataBuku = JSON.stringify(buku);
+    localStorage.setItem("dataBuku", dataBuku);
+  }
+
+  // Fungsi untuk memuat data buku dari localStorage
+  function muatData() {
+    const dataBuku = localStorage.getItem("dataBuku");
+    if (dataBuku) {
+      buku = JSON.parse(dataBuku);
+      renderBuku();
+    }
+  }
+
+  muatData();
+  document.addEventListener("render-buku", simpanData);
 });

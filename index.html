@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Rak Buku APP</title>
+    <title>Rak-Buku-APP</title>
   </head>
 
   <body>
@@ -60,15 +60,6 @@
       <section class="section-buku">
         <h2>Belum Selesai Dibaca</h2>
         <div class="list-buku" id="list-buku-belum-selesai-dibaca">
-          <!-- <div class="info-buku">
-            <h3 class="judul-buku">Judul Buku</h3>
-            <p class="penulis-buku">Penulis: Penulis Buku</p>
-            <p class="tahun-buku">Tahun: Tahun Terbit</p>
-            <div class="aksi-buku">
-              <button class="selesai-dibaca">Selesai Dibaca</button>
-              <button class="hapus-buku">Hapus Buku</button>
-            </div>
-          </div> -->
         </div>
       </section>
 
@@ -76,18 +67,18 @@
       <section class="section-buku">
         <h2>Selesai Dibaca</h2>
         <div class="list-buku" id="list-buku-selesai-dibaca">
-          <!-- <div class="info-buku">
-            <h3 class="judul-buku">Judul Buku</h3>
-            <p class="penulis-buku">Penulis: Penulis Buku</p>
-            <p class="tahun-buku">Tahun: Tahun Terbit</p>
-            <div class="aksi-buku">
-              <button class="selesai-dibaca">Belum Selesai Dibaca</button>
-              <button class="hapus-buku">Hapus Buku</button>
-            </div>
-          </div> -->
         </div>
       </section>
 
+      <!-- Custom dialog ketika hapus buku -->
+      <section id="dialog" class="dialog">
+        <p>Apakah Anda yakin ingin menghapus buku ini?</p>
+        <div class="aksi-dialog">
+          <button id="btn-batal" class="btn btn-batal">Batal</button>
+          <button id="btn-hapus" class="btn btn-hapus">Hapus</button>
+        </div>
+      </section>
+      
     </main>
 
     <!-- Script JS -->
