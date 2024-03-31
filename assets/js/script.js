@@ -192,12 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
       buku.judul.toLowerCase().includes(kataKunci)
     );
   
-    const listBukuBelumSelesaiDibaca = document.getElementById(
-      "list-buku-belum-selesai-dibaca"
-    );
-    const listBukuSelesaiDibaca = document.getElementById(
-      "list-buku-selesai-dibaca"
-    );
+    const listBukuBelumSelesaiDibaca = document.getElementById("list-buku-belum-selesai-dibaca");
+    const listBukuSelesaiDibaca = document.getElementById("list-buku-selesai-dibaca");
   
     listBukuBelumSelesaiDibaca.innerHTML = "";
     listBukuSelesaiDibaca.innerHTML = "";
