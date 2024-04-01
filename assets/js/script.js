@@ -11,9 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Simpan objek buku ke dalam array
-  let buku = [];
-
   // Render buku
   function renderBuku() {
     const listBukuBelumSelesaiDibaca = document.getElementById("list-buku-belum-selesai-dibaca");
