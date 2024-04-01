@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // simapan data buku ke array
+  let buku = [];
+
   // Render buku
   function renderBuku() {
     const listBukuBelumSelesaiDibaca = document.getElementById("list-buku-belum-selesai-dibaca");
@@ -20,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     for (const bukuItem of buku) {
       const infoBuku = buatBuku(bukuItem);
-      if (bukuItem.selesai) {
+      if (bukuItem.isComplete) {
         listBukuSelesaiDibaca.appendChild(infoBuku);
       } else {
         listBukuBelumSelesaiDibaca.appendChild(infoBuku);
@@ -51,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const idBuku = buatIdBuku();
 
     // Buat objek buku
-    function buatObjekBuku(id, judul, penulis, tahun, selesai) {
+    function buatObjekBuku(id, title, author, year, isComplete) {
       return {
         id,
-        judul,
-        penulis,
-        tahun,
-        selesai,
+        title,
+        author,
+        year: parseInt(year),
+        isComplete,
       };
     }
 
@@ -67,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
       judulBuku,
       penulisBuku,
       tahunBuku,
-      selesaiBaca
+      selesaiBaca,
     );
     buku.push(objekBuku);
 
@@ -77,7 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Listener event render-buku
-  document.addEventListener("render-buku", renderBuku);
+  document.addEventListener("render-buku", function () {
+    renderBuku();
+    simpanData();
+  });
 
   // Fungsi untuk membuat elemen buku
   function buatBuku(objekBuku) {
@@ -86,24 +92,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const judulBuku = document.createElement("h3");
     judulBuku.classList.add("judul-buku");
-    judulBuku.innerText = objekBuku.judul;
+    judulBuku.innerText = objekBuku.title;
     infoBuku.appendChild(judulBuku);
 
     const penulisBuku = document.createElement("p");
     penulisBuku.classList.add("penulis-buku");
-    penulisBuku.innerText = objekBuku.penulis;
+    penulisBuku.innerText = objekBuku.author;
     infoBuku.appendChild(penulisBuku);
 
     const tahunBuku = document.createElement("p");
     tahunBuku.classList.add("tahun-buku");
-    tahunBuku.innerText = objekBuku.tahun;
+    tahunBuku.innerText = objekBuku.year;
     infoBuku.appendChild(tahunBuku);
 
     const aksiBuku = document.createElement("div");
     aksiBuku.classList.add("aksi-buku");
     infoBuku.appendChild(aksiBuku);
 
-    if (objekBuku.selesai) {
+    if (objekBuku.isComplete) {
       const selesaiBaca = document.createElement("button");
       selesaiBaca.classList.add("selesai-dibaca");
       selesaiBaca.innerText = "Belum Selesai Dibaca";
@@ -165,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function tambahBukuKeSelesaiDibaca(idBuku) {
     for (const bukuItem of buku) {
       if (bukuItem.id === idBuku) {
-        bukuItem.selesai = true;
+        bukuItem.isComplete = true;
       }
     }
     const RENDER_EVENT = "render-buku";
@@ -176,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function tambahBukuKeBelumSelesaiDibaca(idBuku) {
     for (const bukuItem of buku) {
       if (bukuItem.id === idBuku) {
-        bukuItem.selesai = false;
+        bukuItem.isComplete = false;
       }
     }
     const RENDER_EVENT = "render-buku";
@@ -188,15 +194,17 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < buku.length; i++) {
       if (buku[i].id === idBuku) {
         buku.splice(i, 1);
+        break;
       }
     }
+    renderBuku();
     const RENDER_EVENT = "render-buku";
     document.dispatchEvent(new Event(RENDER_EVENT));
   }
 
   // Fungsi untuk pencarian buku
   const formBuku = document.getElementById("cari-buku");
-  formBuku.addEventListener("input", function () {
+  formBuku.addEventListener("submit", function (event) {
     event.preventDefault();
     cariBuku();
   });
@@ -204,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function cariBuku() {
     const kataKunci = document.getElementById("cari-judul").value.toLowerCase();
     const hasilPencarian = buku.filter((buku) =>
-      buku.judul.toLowerCase().includes(kataKunci)
+      buku.title.toLowerCase().includes(kataKunci)
     );
   
     const listBukuBelumSelesaiDibaca = document.getElementById("list-buku-belum-selesai-dibaca");
@@ -215,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     for (const bukuItem of hasilPencarian) {
       const infoBuku = buatBuku(bukuItem);
-      if (bukuItem.selesai) {
+      if (bukuItem.isComplete) {
         listBukuSelesaiDibaca.appendChild(infoBuku);
       } else {
         listBukuBelumSelesaiDibaca.appendChild(infoBuku);
